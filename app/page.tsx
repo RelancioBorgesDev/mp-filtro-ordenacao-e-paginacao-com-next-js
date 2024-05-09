@@ -12,8 +12,17 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-export default async function Component() {
-  const response = await api.get("/orders");
+interface ComponentProps {
+  searchParams?: { search?: string; status?: string };
+}
+
+export default async function Component({ searchParams }: ComponentProps) {
+  const response = await api.get("/orders", {
+    params: {
+      search: searchParams?.search,
+      status: searchParams?.status,
+    },
+  });
   const orders = response.data.data;
   return (
     <main className="container px-1 py-10 md:p-10">
