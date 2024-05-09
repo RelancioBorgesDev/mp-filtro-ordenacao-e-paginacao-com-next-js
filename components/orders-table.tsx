@@ -21,22 +21,20 @@ interface OrdersTableProps {
 }
 
 export default function OrdersTable({ orders }: OrdersTableProps) {
-  const [ordType, setOrdType] = useState<string>("");
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const handleOrdTypeChange = () => {
-    if (ordType === "") {
-      setOrdType("-");
-    } else {
-      setOrdType("");
-    }
-  };
   const handleFilterByField = (sortField: string): void => {
-    handleOrdTypeChange();
-    const sortedField = ordType === "-" ? `-${sortField}` : sortField;
-    const params = setUrlParams("sort", sortedField, searchParams);
+    const params = new URLSearchParams(searchParams);
+
+    if (params.get("sort") === sortField) {
+      params.set("sort", `-${sortField}`);
+    } else if (params.get("sort") === `-${sortField}`) {
+      params.delete("sort");
+    } else if (sortField) {
+      params.set("sort", sortField);
+    }
     replace(`${pathname}?${params.toString()}`);
   };
 
