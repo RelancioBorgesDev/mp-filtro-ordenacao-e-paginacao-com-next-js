@@ -8,10 +8,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "./ui/badge";
-import { ChevronDown, ChevronsUpDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronsUpDown, ChevronUp, Info } from "lucide-react";
 import type { Order } from "@/types/OrdersType";
 import { centsToBrl } from "@/utils/centsToBrl";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
+import { formatDate } from "@/utils/formatDate";
 
 interface OrdersTableProps {
   orders: Order[];
@@ -69,6 +71,9 @@ export default function OrdersTable({ orders }: OrdersTableProps) {
             Valor
             {renderIcon("amount_in_cents")}
           </TableHead>
+          <TableHead className="table-cell text-right justify-end items-end gap-1">
+            Informações
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -80,6 +85,8 @@ export default function OrdersTable({ orders }: OrdersTableProps) {
             order_date,
             status,
             amount_in_cents,
+            created_at,
+            updated_at,
           }) => (
             <TableRow key={id}>
               <TableCell>
@@ -98,6 +105,21 @@ export default function OrdersTable({ orders }: OrdersTableProps) {
               </TableCell>
               <TableCell className="text-right">
                 {centsToBrl(amount_in_cents)}
+              </TableCell>
+              <TableCell className="text-right ">
+                <span className="w-full flex items-center justify-end">
+                  <HoverCard>
+                    <HoverCardTrigger>
+                      <Info />
+                    </HoverCardTrigger>
+                    <HoverCardContent>
+                      <ul className="flex flex-col items-center">
+                        <li>Criado em: {formatDate(created_at)}</li>
+                        <li>Atualizado em: {formatDate(updated_at)}</li>
+                      </ul>
+                    </HoverCardContent>
+                  </HoverCard>
+                </span>
               </TableCell>
             </TableRow>
           )
