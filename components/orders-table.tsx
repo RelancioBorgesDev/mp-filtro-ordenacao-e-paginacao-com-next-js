@@ -8,13 +8,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "./ui/badge";
-import { ChevronsUpDown } from "lucide-react";
+import { ChevronDown, ChevronsUpDown, ChevronUp } from "lucide-react";
 import type { Order } from "@/types/OrdersType";
-import { stat } from "fs";
 import { centsToBrl } from "@/utils/centsToBrl";
-import { setUrlParams } from "@/utils/setUrlParams";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
 
 interface OrdersTableProps {
   orders: Order[];
@@ -27,15 +24,27 @@ export default function OrdersTable({ orders }: OrdersTableProps) {
 
   const handleFilterByField = (sortField: string): void => {
     const params = new URLSearchParams(searchParams);
+    const sort = params.get("sort");
 
-    if (params.get("sort") === sortField) {
+    if (sort === sortField) {
       params.set("sort", `-${sortField}`);
-    } else if (params.get("sort") === `-${sortField}`) {
+    } else if (sort === `-${sortField}`) {
       params.delete("sort");
     } else if (sortField) {
       params.set("sort", sortField);
     }
     replace(`${pathname}?${params.toString()}`);
+  };
+
+  const renderIcon = (sortField: string) => {
+    const sort = searchParams.get("sort");
+    if (sortField === sort) {
+      return <ChevronDown className="w-4" />;
+    } else if (sort === `-${sortField}`) {
+      return <ChevronUp className="w-4" />;
+    }
+
+    return <ChevronsUpDown className="w-4" />;
   };
 
   return (
@@ -50,7 +59,7 @@ export default function OrdersTable({ orders }: OrdersTableProps) {
               onClick={() => handleFilterByField("order_date")}
             >
               Data
-              <ChevronsUpDown className="w-4" />
+              {renderIcon("order_date")}
             </div>
           </TableHead>
           <TableHead
@@ -58,7 +67,7 @@ export default function OrdersTable({ orders }: OrdersTableProps) {
             onClick={() => handleFilterByField("amount_in_cents")}
           >
             Valor
-            <ChevronsUpDown className="w-4" />
+            {renderIcon("amount_in_cents")}
           </TableHead>
         </TableRow>
       </TableHeader>
