@@ -94,10 +94,10 @@ Neste mini projeto não será preciso implementar nenhum design - já fizemos is
 
 
 ## Adicionados + Extra
-[x] Popular tabela com os dados
-[x] Filtragem por texto
-[x] Filtragem por status
-[x] Filtragem por data
-[x] Filtragem por valor
-[x] Paginação
-**Extra**[x] Adicionado campo extra de informação
+  [x] Popular tabela com os dados
+  [x] Filtragem por texto
+  [x] Filtragem por status
+  [x] Filtragem por data
+  [x] Filtragem por valor
+  [x] Paginação
+  **Extra** + [x] Adicionado campo extra de informação
