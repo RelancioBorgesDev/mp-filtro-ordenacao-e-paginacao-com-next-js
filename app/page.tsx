@@ -27,9 +27,13 @@ export default async function Component({ searchParams }: ComponentProps) {
       search: searchParams?.search,
       status: searchParams?.status,
       sort: searchParams?.sort,
+      page: searchParams?.page,
     },
   });
   const orders = response.data.data;
+  const links = response.data.meta.links;
+  const from = response.data.meta.from;
+  const lastPage = response.data.meta.last_page;
   return (
     <main className="container px-1 py-10 md:p-10">
       <Card>
@@ -46,7 +50,7 @@ export default async function Component({ searchParams }: ComponentProps) {
         <CardContent>
           <OrdersTable orders={orders} />
           <div className="mt-8">
-            <Pagination />
+            <Pagination links={links} from={from} lastPage={lastPage} />
           </div>
         </CardContent>
       </Card>
