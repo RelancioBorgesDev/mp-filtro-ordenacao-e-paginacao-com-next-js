@@ -18,7 +18,7 @@ A API que será utilizada foi desenvolvida por nós, do Codante. O endpoint prin
 
 A documentação da API está em <a target="_blank" href="https://apis-docs.codante.io/orders-api">https://apis-docs.codante.io/orders-api</a>. Será necessário consultá-la para fazer este Mini Projeto.
 
-> [!NOTE]    
+> [!NOTE]  
 > Nenhum dos dados da API são reais e a base de dados é redefinida a cada hora.
 
 ## 🔨 Requisitos
@@ -34,7 +34,7 @@ A documentação da API está em <a target="_blank" href="https://apis-docs.coda
   - Valor do Pedido
 
 > [!TIP]  
-> O valor do pedido está em centavos. Faça as conversões e transforme para o formato brasileiro de número.  
+> O valor do pedido está em centavos. Faça as conversões e transforme para o formato brasileiro de número.
 
 **Busca Textual**
 
@@ -83,8 +83,8 @@ Neste mini projeto não será preciso implementar nenhum design - já fizemos is
 - Search Params
 - Estado na URL
 - Server Components no Next.js
-- 'use client' 
-- Paginação e Ordenação. 
+- 'use client'
+- Paginação e Ordenação.
 
 ### Pré-requisitos
 
@@ -92,12 +92,13 @@ Neste mini projeto não será preciso implementar nenhum design - já fizemos is
 - Next.js básico
 - Entender as diferenças entre server e client components é recomendável
 
-
 ## Adicionados + Extra
-  [x] Popular tabela com os dados
-  [x] Filtragem por texto
-  [x] Filtragem por status
-  [x] Filtragem por data
-  [x] Filtragem por valor
-  [x] Paginação
-  **Extra** + [x] Adicionado campo extra de informação
+
+- [x] Popular tabela com os dados
+- [x] Filtragem por texto
+- [x] Filtragem por status
+- [x] Filtragem por data
+- [x] Filtragem por valor
+- [x] Paginação
+- **Extra**
+  - [x] Adicionado campo extra de informação
